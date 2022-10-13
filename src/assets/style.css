@@ -7,7 +7,7 @@
   background-size: cover;
 }
 body {
-  background: #f2f2f2;
+  background: #f8f8f8;
   background: linear-gradient(to right, #f2f2f2, #f2f2f2);
 }
 .card-img-left {
@@ -17,4 +17,8 @@ body {
   background: scroll center
     url("https://thumbs.dreamstime.com/b/coffee-croissant-seamless-pattern-background-vector-food-design-icons-hand-drawing-elements-graphic-texture-restaurant-68088453.jpg");
   background-size: cover;
+}
+#nav-bar {
+  background-color: #fff;
+  box-shadow: 0 -10px 14px #000;
 }
