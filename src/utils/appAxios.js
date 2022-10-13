@@ -1,8 +1,8 @@
 import axios from "axios";
-const TOKEN = "KFDhwo8KTqjKpBrhxjwn6aqBAWwm4VjUnlsoDN6C";
+const TOKEN = localStorage.getItem("userToken");
 const appAxios = axios.create({
   baseURL: "http://localhost/api",
-
+  Authorization: `Bearer ${TOKEN}`,
   withCredentials: false,
 });
 

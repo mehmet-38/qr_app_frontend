@@ -76,7 +76,7 @@
                 </button>
               </div>
 
-              <a class="d-block text-center mt-2 small" href="#"
+              <a class="d-block text-center mt-2 small" @click="GoLogin"
                 >Have an account? Sign In</a
               >
             </div>
@@ -100,6 +100,12 @@ export default {
     };
   },
   methods: {
+    GoLogin() {
+      this.$router.push({
+        name: "login",
+      });
+    },
+
     Register() {
       const registerObject = {
         name: this.name,
@@ -121,16 +127,3 @@ export default {
   },
 };
 </script>
-<style>
-body {
-  background: #f2f2f2;
-  background: linear-gradient(to right, #f2f2f2, #f2f2f2);
-}
-.card-img-left {
-  width: 45%;
-  /* Link to your background image using in the property below! */
-  background: scroll center
-    url("https://thumbs.dreamstime.com/b/coffee-croissant-seamless-pattern-background-vector-food-design-icons-hand-drawing-elements-graphic-texture-restaurant-68088453.jpg");
-  background-size: cover;
-}
-</style>
