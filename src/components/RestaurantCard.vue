@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">
       <h3>Restorantlar</h3>
       <div
@@ -8,7 +8,11 @@
         :key="rest"
       >
         <div class="card" style="width: 18rem">
-          <a href="" class="img-responsive">
+          <a
+            href=""
+            class="img-responsive"
+            @click="clickRestaurant(rest.menus_id)"
+          >
             <img
               style="width: 100%"
               :src="`http://localhost/${rest.rest_photo}`"
@@ -38,6 +42,23 @@ export default {
       console.log(response.data);
       this.restList = response.data;
     });
+  },
+  methods: {
+    clickRestaurant(menus_id) {
+      if (!localStorage.getItem("userToken")) {
+        this.$router.push({
+          name: "register",
+        });
+      } else {
+        //alert("giris yapılısınız");
+        this.$router.push({
+          name: "menu",
+          params: {
+            menus_id: menus_id,
+          },
+        });
+      }
+    },
   },
 };
 </script>

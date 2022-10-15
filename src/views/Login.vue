@@ -74,6 +74,10 @@ export default {
             "userToken",
             login_response.data.token.substr(3)
           );
+
+          localStorage.getItem("userToken")
+            ? this.$router.push({ name: "home" })
+            : alert("Token olusturulamadı");
         })
         .then((data_response) => {
           //console.log(data_response);

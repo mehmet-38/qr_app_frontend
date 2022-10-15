@@ -1,19 +1,12 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col-12">
-        <NavBar />
-      </div>
+  <NavBar />
+  <RestaurantCard />
 
-      <div class="col-12" style="margin-top: 5%">
-        <RestaurantCard />
-      </div>
-      <!--
+  <!--
       <div class="col-12">
         <Carousel />
       </div>-->
-    </div>
-  </div>
+
   <!--
   <ul>
     <li v-for="rest in restList" :key="rest">
@@ -31,10 +24,6 @@ export default {
     NavBar,
     Carousel,
     RestaurantCard,
-  },
-
-  methods: {
-    getRestData() {},
   },
 };
 </script>
