@@ -76,8 +76,8 @@
                 </button>
               </div>
 
-              <a class="d-block text-center mt-2 small" @click="GoLogin"
-                >Have an account? Sign In</a
+              <a class="d-block text-center mt-2 small" @click="GoLogin" href=""
+                >Hesabın varsa Giriş Yap</a
               >
             </div>
           </div>

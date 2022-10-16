@@ -16,13 +16,13 @@
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue";
-import Carousel from "@/components/Carousel.vue";
+
 import RestaurantCard from "../components/RestaurantCard.vue";
 
 export default {
   components: {
     NavBar,
-    Carousel,
+
     RestaurantCard,
   },
 };

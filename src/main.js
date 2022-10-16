@@ -7,8 +7,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserSecret, faUser } from "@fortawesome/free-solid-svg-icons";
-library.add(faUserSecret, faUser);
+import {
+  faUserSecret,
+  faUser,
+  faSquarePlus,
+  faBasketShopping,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faUserSecret, faUser, faSquarePlus, faBasketShopping);
 createApp(App)
   .use(store)
   .use(router)

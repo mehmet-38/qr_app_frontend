@@ -38,6 +38,9 @@
                   Login
                 </button>
               </div>
+              <div class="d-block text-center mt-2 small">
+                Kayıtlı değilsen <a href="/register">Kayıt Ol</a>
+              </div>
             </div>
           </div>
         </div>

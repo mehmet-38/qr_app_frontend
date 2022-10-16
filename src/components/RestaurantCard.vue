@@ -9,9 +9,9 @@
       >
         <div class="card" style="width: 18rem">
           <a
-            href=""
+            style="cursor: pointer"
             class="img-responsive"
-            @click="clickRestaurant(rest.menus_id)"
+            @click="clickRestaurant(rest.menus_id, rest.rest_id)"
           >
             <img
               style="width: 100%"
@@ -34,20 +34,22 @@ export default {
       restList: [],
     };
   },
+
   created() {
     appAxios({
       url: "/rest",
       method: "GET",
     }).then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       this.restList = response.data;
     });
   },
+
   methods: {
-    clickRestaurant(menus_id) {
+    clickRestaurant(menus_id, id) {
       if (!localStorage.getItem("userToken")) {
         this.$router.push({
-          name: "register",
+          name: "login",
         });
       } else {
         //alert("giris yapılısınız");
@@ -55,8 +57,10 @@ export default {
           name: "menu",
           params: {
             menus_id: menus_id,
+            rest_id: id,
           },
         });
+        //console.log(id);
       }
     },
   },
