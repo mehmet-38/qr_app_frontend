@@ -1,9 +1,9 @@
 <template>
   <div class="container mt-5">
     <div class="row">
-      <h3>Restorantlar</h3>
+      <h3 class="rest-text">Restorantlar</h3>
       <div
-        class="col-lg-3 col-md-6 col-sm-3"
+        class="col-lg-3 col-md-6 col-sm-3 rest-card"
         v-for="rest in restList"
         :key="rest"
       >
@@ -14,7 +14,7 @@
             @click="clickRestaurant(rest.menus_id, rest.rest_id)"
           >
             <img
-              style="width: 100%"
+              style="width: 100%; height: 150px"
               :src="`http://localhost/${rest.rest_photo}`"
               class="card-img-top"
           /></a>
@@ -66,4 +66,3 @@ export default {
   },
 };
 </script>
-<style></style>

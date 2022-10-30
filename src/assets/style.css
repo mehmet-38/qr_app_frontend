@@ -26,3 +26,25 @@ body {
   color: #4649ff;
   font-size: x-large;
 }
+@media (min-width: 375px) {
+  .menu-card {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .menu-text {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .rest-card {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .rest-text {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+}

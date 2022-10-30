@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BasketModal :open="showModal"> </BasketModal>
     <nav class="navbar navbar-light" id="nav-bar">
       <a class="navbar-brand ms-5" href="/">
         <img
@@ -12,7 +13,13 @@
       </a>
       <ul class="nav" style="margin-right: 5%">
         <li class="nav-item">
-          <a class="nav-link active text-dark fw-bold position-relative"
+          <a
+            class="nav-link active text-dark fw-bold position-relative"
+            style="cursor: pointer"
+            @click="onModal"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
             ><font-awesome-icon
               icon="fa-solid fa-basket-shopping"
               class="me-2 font-icon"
@@ -40,9 +47,23 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import BasketModal from "@/components/BasketModal.vue";
 export default {
   computed: {
     ...mapState(["basket"]),
+  },
+  components: { BasketModal },
+
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+
+  methods: {
+    onModal() {
+      this.showModal = true;
+    },
   },
 };
 </script>
