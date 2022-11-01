@@ -26,13 +26,14 @@
             />
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              v-if="basket != 0"
+              v-if="basket !== 0"
             >
               {{ basket }}
             </span>
           </a>
         </li>
-        <li class="nav-item ms-4">
+
+        <li class="nav-item ms-4" v-if="!localStorage">
           <a
             class="nav-link active text-dark fw-bold"
             aria-current="page"
@@ -57,6 +58,7 @@ export default {
   data() {
     return {
       showModal: false,
+      localStorage: localStorage.getItem("userToken"),
     };
   },
 

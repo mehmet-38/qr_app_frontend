@@ -15,6 +15,7 @@
             v-bind:food_name="item.food_name"
             v-bind:food_price="item.food_price"
             v-bind:product_photo="item.product_photo"
+            v-bind:product_id="item.product_id"
           />
         </div>
       </div>

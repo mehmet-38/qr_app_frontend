@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 import menu from "./modules/menu";
 import restaurantList from "./modules/restaurantList";
 
-import { appAxios } from "@/utils/appAxios";
+import appAxios from "@/utils/appAxios";
 export default createStore({
   state: {
     basket: 0,
