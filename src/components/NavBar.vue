@@ -1,6 +1,7 @@
 <template>
   <div>
-    <BasketModal :open="showModal"> </BasketModal>
+    <BasketModal :open="showModal" :basketGetters="basketGetters">
+    </BasketModal>
     <nav class="navbar navbar-light" id="nav-bar">
       <a class="navbar-brand ms-5" href="/">
         <img
@@ -26,9 +27,9 @@
             />
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              v-if="basket !== 0"
+              v-if="basketGetters?.length > 0"
             >
-              {{ basket }}
+              {{ basketGetters?.length }}
             </span>
           </a>
         </li>
@@ -37,8 +38,19 @@
           <a
             class="nav-link active text-dark fw-bold"
             aria-current="page"
-            href="/register"
+            href="/login"
             ><font-awesome-icon icon="fa-solid fa-user" class="me-2" />GIRIS
+            YAP</a
+          >
+        </li>
+        <li class="nav-item ms-4" v-if="localStorage">
+          <a
+            class="nav-link active text-dark fw-bold"
+            aria-current="page"
+            style="cursor: pointer"
+            href="/login"
+            @click="signOut"
+            ><font-awesome-icon icon="fa-solid fa-user" class="me-2" />CIKIS
             YAP</a
           >
         </li>
@@ -47,11 +59,12 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import BasketModal from "@/components/BasketModal.vue";
 export default {
   computed: {
     ...mapState(["basket"]),
+    ...mapGetters("basketList", ["basketGetters"]),
   },
   components: { BasketModal },
 
@@ -61,10 +74,16 @@ export default {
       localStorage: localStorage.getItem("userToken"),
     };
   },
-
+  created() {
+    this.$store.dispatch("basketList/getBasket");
+  },
   methods: {
     onModal() {
       this.showModal = true;
+      this.$store.dispatch("basketList/getBasket");
+    },
+    signOut() {
+      localStorage.clear();
     },
   },
 };

@@ -16,7 +16,6 @@ export default {
         method: "GET",
       }).then((menu_response) => {
         context.commit("menu", menu_response.data);
-        console.log();
       });
     },
   },

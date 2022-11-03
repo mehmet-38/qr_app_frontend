@@ -12,8 +12,9 @@ import {
   faUser,
   faSquarePlus,
   faBasketShopping,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faUserSecret, faUser, faSquarePlus, faBasketShopping);
+library.add(faUserSecret, faUser, faSquarePlus, faBasketShopping, faTrash);
 createApp(App)
   .use(store)
   .use(router)

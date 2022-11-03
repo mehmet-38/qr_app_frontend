@@ -19,9 +19,45 @@
             ></button>
           </div>
           <div class="modal-body">
-            <div class="row" v-for="item in basketList" :key="item">
-              <div class="col">{{ item.product_name }}</div>
-              <div class="col">{{ item.food_price }}</div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">İsim</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Adet</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in basketGetters" :key="item.product_id">
+                    <td scope="row" class="border-0">
+                      <div class="p-2">
+                        <img
+                          :src="`http://localhost/${item.product_photo}`"
+                          alt=""
+                          width="70"
+                          class="img-fluid rounded shadow-sm"
+                        />
+                        <div class="ms-2 d-inline-block align-middle">
+                          <h5 class="mb-0">{{ item.product_name }}</h5>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="border-0 align-middle">
+                      <strong>{{ item.food_price }}</strong>
+                    </td>
+                    <td class="border-0 align-middle"><strong>3</strong></td>
+                    <td class="border-0 align-middle">
+                      <a href="#" class="text-danger"
+                        ><font-awesome-icon
+                          icon="fa-solid fa-trash"
+                          class="me-2"
+                      /></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <div class="modal-footer">
@@ -42,25 +78,10 @@
   </div>
 </template>
 <script>
-import appAxios from "@/utils/appAxios";
 export default {
   props: {
     open: Boolean,
-  },
-  data() {
-    return {
-      basketList: [],
-    };
-  },
-  mounted() {
-    appAxios({
-      url: "/basket",
-      method: "GET",
-    }).then((response) => {
-      console.log(response.data);
-      this.basketList = response.data;
-      console.log("basketList", this.basketList);
-    });
+    basketGetters: Object,
   },
 };
 </script>
