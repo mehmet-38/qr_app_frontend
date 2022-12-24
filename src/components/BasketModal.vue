@@ -20,10 +20,10 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col">
+              <div class="col-9" style="display: flex; justify-content: center">
                 <h5>Masa numarası seciniz</h5>
               </div>
-              <div class="col">
+              <div class="col-3">
                 <select
                   class="form-select form-select-sm"
                   aria-label="size 3 select example"
@@ -102,6 +102,7 @@ export default {
     return {
       orderPrice: null,
       tableNumber: null,
+      orderProduct: [],
     };
   },
   props: {
@@ -109,14 +110,35 @@ export default {
     basketGetters: Object,
   },
 
+  //this.$route.params.rest_id
   methods: {
+    test() {
+      this.basketGetters.forEach((item) => {
+        this.orderProduct.push(item.product_name);
+      });
+      //console.log(this.orderProduct.toString());
+
+      appAxios({
+        url: "/order-detail",
+        method: "POST",
+        data: {
+          order_id: 2,
+          product_name: this.orderProduct.toString(),
+        },
+      }).then((order_detail_response) => {
+        console.log(order_detail_response);
+      });
+    },
     async takeOrder() {
       this.basketGetters.forEach((element) => {
         this.orderPrice += element.food_price;
+        this.orderProduct.push(element.product_name);
       });
+
       const orderObject = {
         table_number: this.tableNumber,
         order_price: this.orderPrice,
+        rest_id: this.$route.params.rest_id,
       };
 
       await appAxios({
@@ -124,7 +146,17 @@ export default {
         method: "POST",
         data: orderObject,
       }).then((order_response) => {
-        console.log(order_response.data);
+        console.log(order_response.data.order_id);
+        appAxios({
+          url: "/order-detail",
+          method: "POST",
+          data: {
+            order_id: order_response.data.order_id,
+            product_name: this.orderProduct.toString(),
+          },
+        }).then((order_detail_response) => {
+          console.log(order_detail_response);
+        });
       });
 
       appAxios({

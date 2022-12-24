@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <RestaurantInfo />
+  <!-- <RestaurantInfo /> -->
 
   <div>
     <div class="container mt-5">
@@ -40,7 +40,7 @@ export default {
   methods: {},
   mounted() {
     this.$store.dispatch("menu/getMenu", this.$route.params.menus_id);
-    console.log(this.$route.params.rest_id);
+    //console.log(this.$route.params.rest_id);
   },
 };
 </script>

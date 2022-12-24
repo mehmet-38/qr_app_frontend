@@ -20,6 +20,7 @@ export default {
         method: "GET",
       }).then((response) => {
         context.commit("basketList", response.data);
+
         //console.log(response.data);
         //this.basketList = response.data;
         //console.log("basketList", this.basketList);
