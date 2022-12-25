@@ -67,7 +67,10 @@
                     </td>
                     <td class="border-0 align-middle"><strong>3</strong></td>
                     <td class="border-0 align-middle">
-                      <a href="#" class="text-danger"
+                      <a
+                        href="#"
+                        class="text-danger"
+                        @click="deleteRow(item.basket_id)"
                         ><font-awesome-icon
                           icon="fa-solid fa-trash"
                           class="me-2"
@@ -97,6 +100,7 @@
 </template>
 <script>
 import appAxios from "@/utils/appAxios";
+
 export default {
   data() {
     return {
@@ -110,23 +114,16 @@ export default {
     basketGetters: Object,
   },
 
-  //this.$route.params.rest_id
   methods: {
-    test() {
-      this.basketGetters.forEach((item) => {
-        this.orderProduct.push(item.product_name);
-      });
-      //console.log(this.orderProduct.toString());
+    deleteRow(basket_id) {
+      //this.$store.dispatch("basketList/deleteItem", basket_id);
 
       appAxios({
-        url: "/order-detail",
-        method: "POST",
-        data: {
-          order_id: 2,
-          product_name: this.orderProduct.toString(),
-        },
-      }).then((order_detail_response) => {
-        console.log(order_detail_response);
+        url: `/basket/${basket_id}`,
+        method: "DELETE",
+      }).then((delete_response) => {
+        console.log(delete_response.data);
+        this.$store.dispatch("basketList/deleteItem", basket_id);
       });
     },
     async takeOrder() {

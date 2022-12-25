@@ -12,6 +12,11 @@ export default {
     basketList(state, item) {
       state.basketList = item;
     },
+    deleteBasketItem(state, basket_id) {
+      state.basketList = state.basketList.filter(
+        (item) => item.basket_id !== basket_id
+      );
+    },
   },
   actions: {
     getBasket(context) {
@@ -20,11 +25,10 @@ export default {
         method: "GET",
       }).then((response) => {
         context.commit("basketList", response.data);
-
-        //console.log(response.data);
-        //this.basketList = response.data;
-        //console.log("basketList", this.basketList);
       });
+    },
+    deleteItem(context, basket_id) {
+      context.commit("deleteBasketItem", basket_id);
     },
   },
   namespaced: true,

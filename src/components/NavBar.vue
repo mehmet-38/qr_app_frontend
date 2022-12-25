@@ -3,7 +3,7 @@
     <BasketModal :open="showModal" :basketGetters="basketGetters">
     </BasketModal>
     <nav class="navbar navbar-light" id="nav-bar">
-      <a class="navbar-brand ms-5" href="/">
+      <router-link class="navbar-brand ms-5" to="/">
         <img
           src="@/assets/clipart1944380.png"
           alt=""
@@ -11,12 +11,19 @@
           height="50"
           class="d-inline-block align-text-top"
         />
-      </a>
+      </router-link>
       <ul class="nav" style="margin-right: 5%">
+        <li class="nav-item ms-4">
+          <router-link
+            class="nav-link active text-dark fw-bold"
+            aria-current="page"
+            to="/orders"
+            >Siparişlerim</router-link
+          >
+        </li>
         <li class="nav-item">
           <a
             class="nav-link active text-dark fw-bold position-relative"
-            style="cursor: pointer"
             @click="onModal"
             type="button"
             data-bs-toggle="modal"
@@ -35,23 +42,22 @@
         </li>
 
         <li class="nav-item ms-4" v-if="!localStorage">
-          <a
+          <router-link
             class="nav-link active text-dark fw-bold"
             aria-current="page"
-            href="/login"
+            to="/login"
             ><font-awesome-icon icon="fa-solid fa-user" class="me-2" />GIRIS
-            YAP</a
+            YAP</router-link
           >
         </li>
         <li class="nav-item ms-4" v-if="localStorage">
-          <a
+          <router-link
             class="nav-link active text-dark fw-bold"
             aria-current="page"
-            style="cursor: pointer"
-            href="/login"
+            to="/login"
             @click="signOut"
             ><font-awesome-icon icon="fa-solid fa-user" class="me-2" />CIKIS
-            YAP</a
+            YAP</router-link
           >
         </li>
       </ul>
