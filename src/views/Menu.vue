@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBar :tableCount="tableCount" />
   <!-- <RestaurantInfo /> -->
 
   <div>
@@ -28,10 +28,14 @@ import { mapState } from "vuex";
 import NavBar from "@/components/NavBar.vue";
 import RestaurantInfo from "@/components/RestaurantInfo.vue";
 import BasketModal from "@/components/BasketModal.vue";
+import appAxios from "@/utils/appAxios";
+
 export default {
   components: { MenuCard, NavBar, RestaurantInfo, BasketModal },
   data() {
-    return {};
+    return {
+      tableCount: null,
+    };
   },
 
   computed: {
@@ -41,6 +45,12 @@ export default {
   mounted() {
     this.$store.dispatch("menu/getMenu", this.$route.params.menus_id);
     //console.log(this.$route.params.rest_id);
+    appAxios({
+      url: `/rest-table/${this.$route.params.rest_id}`,
+      method: "GET",
+    }).then((table_reponse) => {
+      this.tableCount = table_reponse.data.table_count;
+    });
   },
 };
 </script>

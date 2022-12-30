@@ -29,10 +29,9 @@
                   aria-label="size 3 select example"
                   v-model="tableNumber"
                 >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
+                  <option v-for="count in tableCount" :key="count">
+                    {{ count }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -107,11 +106,13 @@ export default {
       orderPrice: null,
       tableNumber: null,
       orderProduct: [],
+      isPaid: 0,
     };
   },
   props: {
     open: Boolean,
     basketGetters: Object,
+    tableCount: Number,
   },
 
   methods: {
@@ -143,13 +144,14 @@ export default {
         method: "POST",
         data: orderObject,
       }).then((order_response) => {
-        console.log(order_response.data.order_id);
+        // console.log(order_response.data.order_id);
         appAxios({
           url: "/order-detail",
           method: "POST",
           data: {
             order_id: order_response.data.order_id,
             product_name: this.orderProduct.toString(),
+            isPaid: this.isPaid,
           },
         }).then((order_detail_response) => {
           console.log(order_detail_response);
@@ -160,7 +162,7 @@ export default {
         url: "/basket",
         method: "DELETE",
       }).then((delete_response) => {
-        console.log(delete_response.data);
+        //console.log(delete_response.data);
         this.$store.commit("basketList/basketList", null);
       });
     },

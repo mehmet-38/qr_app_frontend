@@ -1,6 +1,10 @@
 <template>
   <div>
-    <BasketModal :open="showModal" :basketGetters="basketGetters">
+    <BasketModal
+      :tableCount="tableCount"
+      :open="showModal"
+      :basketGetters="basketGetters"
+    >
     </BasketModal>
     <nav class="navbar navbar-light" id="nav-bar">
       <router-link class="navbar-brand ms-5" to="/">
@@ -73,7 +77,7 @@ export default {
     ...mapGetters("basketList", ["basketGetters"]),
   },
   components: { BasketModal },
-
+  props: ["tableCount"],
   data() {
     return {
       showModal: false,

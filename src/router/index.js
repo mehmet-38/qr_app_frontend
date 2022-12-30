@@ -4,6 +4,7 @@ import Login from "@/views/Login.vue";
 import Home from "@/views/Home.vue";
 import Menu from "@/views/Menu.vue";
 import Orders from "@/views/Orders.vue";
+import PaymentPage from "@/views/PaymentPage";
 const routes = [
   {
     path: "/register",
@@ -29,6 +30,13 @@ const routes = [
     path: "/orders",
     name: "orders",
     component: Orders,
+    props: true,
+  },
+  {
+    path: "/payment/:isPaid/:id",
+    name: "payment",
+    component: PaymentPage,
+    props: true,
   },
 ];
 
